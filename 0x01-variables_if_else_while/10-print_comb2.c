@@ -19,7 +19,8 @@ int main(void)
 		{
 			putchar(a);
 			putchar(b);
-			if ((a & b) != '9')
+			/*if ((a & b) != '9') THIS WAS MAGIC LUCK IT WORKED*/
+			if (a != '9' || b != '9')
 			{
 				putchar(',');
 				putchar(' ');
