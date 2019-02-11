@@ -9,51 +9,24 @@
  * Return: On success 1.
  * On error, -1 is returned, and errno is set appropriately.
  */
-int _putchar(char c)
-{
-	return (write(1, &c, 1));
-}
-
+int _putchar(char c);
 /**
  * print_alphabet - printing the alphabet
  *
  * Return: 0
  */
-int print_alphabet(void)
-{
-	char s[] = "abcdefghigklmnopqrstuvwxyz\n";
-	unsigned int i = 0;
-
-	while (i <= 26)
-	{
-		_putchar(s[i]);
-		i++;
-	}
-	return (0);
-}
-
+int print_alphabet(void);
 /**
  * print_alphabet_x10 - printing the alphabet 10 times
  *
  * Return: 0
  */
-int print_alphabet_x10(void)
-{
-	char s[] = "abcdefghijklmnopqrstuvwxyz\n";
-	int a = 0;
-
-	while (a < 10)
-	{
-		unsigned int i = 0;
-
-		while (i <= 26)
-		{
-			_putchar(s[i]);
-			i++;
-		}
-		a++;
-	}
-	return (0);
-}
+int print_alphabet_x10(void);
+/**
+ * _islower - Checks to see if a character is lowercase
+ * @c: The character to print
+ * Return: 1 or 0
+ */
+int _islower(int c);
 
 #endif /* _HOLBERTON_H_ */
