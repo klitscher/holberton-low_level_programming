@@ -10,18 +10,21 @@
  * On error, -1 is returned, and errno is set appropriately.
  */
 int _putchar(char c);
+
 /**
  * print_alphabet - printing the alphabet
  *
  * Return: 0
  */
 int print_alphabet(void);
+
 /**
  * print_alphabet_x10 - printing the alphabet 10 times
  *
  * Return: 0
  */
 int print_alphabet_x10(void);
+
 /**
  * _islower - Checks to see if a character is lowercase
  * @c: The character to print
