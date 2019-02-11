@@ -5,7 +5,7 @@
  *
  * Return: 0
  */
-int main(void)
+int print_alphabet_x10(void)
 {
 	char s[] = "abcdefghigklmnopqrstuvwxyz\n";
 	int a = 0;

@@ -1,11 +1,11 @@
 #include "holberton.h"
 
 /**
- * main - printing the alphabet
+ * print_alphabet - printing the alphabet
  *
  * Return: 0
  */
-int main(void)
+int print_alphabet(void)
 {
 	char s[] = "abcdefghigklmnopqrstuvwxyz\n";
 	unsigned int i = 0;
