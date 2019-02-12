@@ -8,9 +8,9 @@
 int print_alphabet(void)
 {
 	char s[] = "abcdefghigklmnopqrstuvwxyz\n";
-	unsigned int i = 0;
+	int i = 0;
 
-	while (i <= 26)
+	while (i <= 27)
 	{
 		_putchar(s[i]);
 		i++;
