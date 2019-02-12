@@ -7,7 +7,7 @@
  */
 int main(void)
 {
-	char h[10] = {'H', 'o', 'l', 'b', 'e', 'r', 't', 'o', 'n', '\0'};
+	char h[] = {'H', 'o', 'l', 'b', 'e', 'r', 't', 'o', 'n', '\0'};
 	int i = 0;
 
 	while (i < 10)
