@@ -4,15 +4,15 @@
  * print_last_digit - prints last digit of a number
  * @n: Number to ber printed
  *
- * Return: 0
+ * Return: n
  */
 int print_last_digit(int n)
 {
-	n = _abs(n);
 
-	if (n > 9)
+	if (n > 9 || n < -9)
 	{
 		n = n % 10;
+		n = _abs(n);
 	}
 	_putchar('0' + n);
 	return (n);
