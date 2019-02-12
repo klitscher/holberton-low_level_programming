@@ -7,13 +7,14 @@
  */
 int print_alphabet(void)
 {
-	char s[] = "abcdefghigklmnopqrstuvwxyz\n";
+	char s[] = "abcdefghigklmnopqrstuvwxyz";
 	int i = 0;
 
-	while (i <= 26)
+	while (i <= 25)
 	{
 		_putchar(s[i]);
 		i++;
 	}
+	_putchar('\n');
 	return (0);
 }
