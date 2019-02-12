@@ -7,19 +7,19 @@
  */
 int print_alphabet_x10(void)
 {
-	char s[] = "abcdefghigklmnopqrstuvwxyz\n";
-	int a = 0;
+	char a = 'a';
+	int i = 0;
 
-	while (a < 10)
+	while (i < 10)
 	{
-		unsigned int i = 0;
-
-		while (i <= 26)
+		while (a <= 'z')
 		{
-			_putchar(s[i]);
-			i++;
+			_putchar(a);
+			a++;
 		}
-		a++;
+		_putchar('\n');
+		a = 'a';
+		i++;
 	}
 	return (0);
 }
