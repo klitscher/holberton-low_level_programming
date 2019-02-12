@@ -7,13 +7,12 @@
  */
 int print_alphabet(void)
 {
-	char s[] = "abcdefghigklmnopqrstuvwxyz";
-	int i = 0;
+	char a = 'a';
 
-	while (i <= 25)
+	while (a <= 'z')
 	{
-		_putchar(s[i]);
-		i++;
+		_putchar(a);
+		a++;
 	}
 	_putchar('\n');
 	return (0);
