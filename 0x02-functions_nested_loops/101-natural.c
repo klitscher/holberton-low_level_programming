@@ -14,7 +14,14 @@ int main(void)
 	int total = 0;
 
 	for (t = 0; t < 1024; t += 3)
-		tsum = t + tsum;
+	{
+		if ((t % 10) != 5 && (t % 10) != 0)
+		{
+			tsum = t + tsum;
+		}
+		else
+			tsum = tsum;
+	}
 	for (f = 0; f < 1024; f += 5)
 		fsum = f + fsum;
 	total = fsum + tsum;
