@@ -11,13 +11,13 @@ int main(void)
 	int f;
 	int tsum = 0;
 	int fsum = 0;
-	int total;
+	int total = 0;
 
 	for (t = 0; t < 1024; t += 3)
 		tsum = t + tsum;
 	for (f = 0; f < 1024; f += 5)
 		fsum = f + fsum;
 	total = fsum + tsum;
-	printf("%i\n", total);
+	printf("%u\n", total);
 	return (0);
 }
