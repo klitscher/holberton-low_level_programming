@@ -1,0 +1,1 @@
+Directory for pointers and thier exercises
