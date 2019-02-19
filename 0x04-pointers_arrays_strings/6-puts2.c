@@ -16,7 +16,7 @@ void puts2(char *str)
 		str1++;
 		len++;
 	}
-	if ((len % 2) == 0)
+	if (len == 0)
 	{
 		_putchar(*str);
 		str = str + 2;
