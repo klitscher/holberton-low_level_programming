@@ -19,7 +19,7 @@ void puts2(char *str)
 	if ((len % 2) == 0)
 	{
 		_putchar(*str);
-		str = str +2;
+		str = str + 2;
 	}
 	while (*str != '\0' && *(str - 1) != '\0')
 	{
