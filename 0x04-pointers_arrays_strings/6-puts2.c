@@ -8,7 +8,20 @@
  */
 void puts2(char *str)
 {
-	while (*str != '\0' && (str - 1) != '\0')
+	char *str1 = str;
+	int len = 0;
+
+	while (*str1 != '0')
+	{
+		str1++;
+		len++;
+	}
+	if ((len % 2) == 0)
+	{
+		_putchar(*str);
+		str = str +2;
+	}
+	while (*str != '\0' && *(str - 1) != '\0')
 	{
 		_putchar(*str);
 		str = str + 2;
