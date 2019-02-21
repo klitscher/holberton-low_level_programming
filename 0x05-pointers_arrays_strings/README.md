@@ -1,0 +1,1 @@
+Directory for all the points, arrays, and strings exercises
