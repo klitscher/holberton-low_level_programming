@@ -8,7 +8,7 @@
  */
 char *cap_string(char *str)
 {
-	char a[] = ". \t\n,;!?\"(){}";
+	char a[] = " \t\n,;.!?\"(){}";
 	int i, j;
 
 
@@ -25,8 +25,16 @@ char *cap_string(char *str)
 				{
 					str[i] = str[i] - 32;
 				}
+				else
+				{
+					i++;
+					if (str[i] >= 97 && str[i] <= 122)
+					{
+						str[i] = str[i] - 32;
+					}
+				}
 			}
 		}
 	}
-	return(str);
+	return (str);
 }
