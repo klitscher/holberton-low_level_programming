@@ -1,1 +1,1 @@
-Directory for all the points, arrays, and strings exercises
+Directory for all the points, arrays, and strings exercises. Test
