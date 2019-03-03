@@ -30,6 +30,8 @@ int main(int argc, char *argv[])
 				continue;
 			else if (argv[i][j] == '-' && j == 0)
 				continue;
+			else if (argv[i][j] == '+' && j == 0)
+				continue;
 			else
 			{
 				printf("ERROR\n");
