@@ -11,21 +11,18 @@
  */
 int main(int argc, char *argv[])
 {
-	int i;
+	int num1;
+	int num2;
 	int mult;
 
-	for (i = 0; i < argc - 1; i++)
-	{
-	}
-	if (i > 1 && i <= 2)
-	{
-		mult = atoi(argv[1]) * atoi(argv[2]);
-		printf("%d\n", mult);
-		return (0);
-	}
-	else
+	if (argc != 3)
 	{
 		printf("ERROR\n");
 		return (1);
 	}
+	num1 = atoi(argv[1]);
+	num2 = atoi(argv[2]);
+	mult = num1 * num2;
+	printf("%d\n", mult);
+	return (0);
 }
