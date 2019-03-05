@@ -26,23 +26,21 @@ int _strlen(char *s)
  */
 char *str_concat(char *s1, char *s2)
 {
-	char *ptrs1 = s1;
 	char *concat;
 	char *concat1;
 	int lens1;
 	int lens2;
 
-	if (s1 == NULL || s2 == NULL)
-		return (NULL);
+	if (s1 == NULL)
+		s1 = "";
+	if (s2 == NULL)
+		s2 = "";
 	lens1 = _strlen(s1) + 1;
 	lens2 = _strlen(s2) + 1;
 	concat = malloc((sizeof(char) * lens1) + sizeof(char) * lens2);
 	concat1 = concat;
 	if (concat == NULL)
 		return (NULL);
-	for (; *ptrs1 != '\0'; ptrs1++)
-	{
-	}
 	/* set *concat = *s1 */
 	while (*s1 != 0)
 	{
