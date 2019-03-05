@@ -31,12 +31,12 @@ char *_strdup(char *str)
 
 	if (str == NULL)
 		return (NULL);
-	len= _strlen(str);
+	len = _strlen(str) + 1;
 	ptr = malloc(sizeof(char) * len);
 	if (ptr == NULL)
 		return (NULL);
 	/*Filling the array with the same characters as the string passed*/
-	while (i <= len)
+	while (i < len)
 	{
 		ptr[i] = str[i];
 		i++;
