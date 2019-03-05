@@ -12,20 +12,36 @@
 int main(int argc, char *argv[])
 {
 	int i;
+	int j;
+	int num1;
+	int num2;
 	int mult;
 
-	for (i = 0; i < argc - 1; i++)
+	if (argc != 3)
 	{
-	}
-	if (i > 1 && i <= 2)
-	{
-		mult = atoi(argv[1]) * atoi(argv[2]);
-		printf("%d\n", mult);
-		return (0);
-	}
-	else
-	{
-		printf("ERROR\n");
+		printf("Error\n");
 		return (1);
 	}
+	for (i = 1; i < argc; i++)
+	{
+		for (j = 0; argv[i][j] != '\0'; j++)
+		{
+			if (argv[i][j] >= '0' && argv[i][j] <= '9')
+				continue;
+			else if (argv[i][j] == '-' && j == 0)
+				continue;
+			else if (argv[i][j] == '+' && j == 0)
+				continue;
+			else
+			{
+				printf("Error\n");
+				return (1);
+			}
+		}
+	}
+	num1 = atoi(argv[1]);
+	num2 = atoi(argv[2]);
+	mult = num1 * num2;
+	printf("%d\n", mult);
+	return (0);
 }
