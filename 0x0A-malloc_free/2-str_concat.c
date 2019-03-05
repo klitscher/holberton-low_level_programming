@@ -35,12 +35,12 @@ char *str_concat(char *s1, char *s2)
 		s1 = "";
 	if (s2 == NULL)
 		s2 = "";
-	lens1 = _strlen(s1) + 1;
+	lens1 = _strlen(s1);
 	lens2 = _strlen(s2) + 1;
 	concat = malloc((sizeof(char) * lens1) + sizeof(char) * lens2);
-	concat1 = concat;
 	if (concat == NULL)
 		return (NULL);
+	concat1 = concat;
 	/* set *concat = *s1 */
 	while (*s1 != 0)
 	{
@@ -48,6 +48,7 @@ char *str_concat(char *s1, char *s2)
 		concat++;
 		s1++;
 	}
+	/* set the rest of *concat = *s2 */
 	while (lens2 > 0)
 	{
 		*concat = *s2;
