@@ -2,23 +2,27 @@
 #include "holberton.h"
 
 /**
- * _strlen - Function to find the length of a string
- * @s: The string to get the length of
+ * _allstrlen - Function to find the length of a string
+ * @ac: The numbers of strings
+ * @av: The string count
  *
  * Return: The length of the string
  */
-int _strlen(char *s)
+int _allstrlen(int ac, char **av)
 {
-	int i;
+	int y, x;
+	int cnt = 0;
 
-	for (i = 0; *s != '\0'; s++)
+	for (y = 0; y < ac; y++)
 	{
-		i++;
+		for (x = 0; av[y][x] != '\0'; x++, cnt++)
+		{
+		}
 	}
-	return (i);
+	return (cnt);
 }
 /**
- * argstostrstr - concatenates two strings
+ * argstostr - concatenates two strings
  * @ac: argument count
  * @av: user argument to concatenate
  *
@@ -28,24 +32,25 @@ char *argstostr(int ac, char **av)
 {
 	char *p;
 	int i, j;
+	int c = 0;
+	int total = _allstrlen(ac, av);
 
 	if (ac == 0 || av == NULL)
 		return (NULL);
-	p = (char *) malloc((ac - 1) * sizeof(char *));
+	p = malloc(total + ac + 1);
 	if (p == NULL)
 		return (NULL);
+	/* copying the strings from command line to the value p is pointing to */
 	for (i = 0; i < ac; i++)
 	{
-		p[i] = (char *) malloc(_strlen(av[i + 1]) * sizeof(char));
-		if (p[i] == NULL)
-			return (NULL);
+		for (j = 0; av[i][j]; j++, c++)
+		{
+			p[c] = av[i][j];
+		}
+		/* Adding the newline & skipping it so loop does not replace */
+		p[c] = '\n';
+		c++;
 	}
-	for (i = 0; i < ac; i++)
-		for (j = 0; j < _strlen(av[i + 1]); j++)
-			{
-				*p = **av;
-				av++;
-				p++;
-			}
-	return(p);
+	p[c] = '\0';
+	return (p);
 }
