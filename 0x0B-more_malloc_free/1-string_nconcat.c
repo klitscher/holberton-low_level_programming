@@ -2,50 +2,20 @@
 #include <stdlib.h>
 
 /**
- * _strlen - get the total length of the string
- * @s1: the string to get the length of
+ * _strlen - Function to find the length of a string
+ * @s: The string to get the length of
  *
- * Return: the length of the string
+ * Return: The length of the string
  */
-int _strlen(char *s1)
+unsigned int _strlen(char *s)
 {
-	int i = 0;
+	unsigned int i;
 
-	for (; s1[i] != '\0'; i++)
+	for (i = 0; *s != '\0'; s++)
 	{
+		i++;
 	}
 	return (i);
-}
-/**
- * _newstr - get the length of the string to n bytes
- * @s2: string to get the length of
- * @n: number of bytes to get the length of
- *
- * Return: a pointer to the new string
- */
-char *_newstr(char *s2, int n)
-{
-	int len = 0;
-	int i = 0;
-	char *newstring;
-
-	/* Get length of the new string based on n bytes */
-	for (; len < n && s2[i] != '\0'; i++, len++)
-	{
-	}
-	if (s2[i] == '\0')
-		len++;
-
-	/* Allocate memory for newstring */
-	newstring = malloc((len + 1) * sizeof(char));
-	if (newstring == NULL)
-		return (NULL);
-	/* Copy the value s2 is pointing towards into newstring */
-	for (i = 0; n > 0 && s2[i] != '\0'; n--, i++)
-	{
-		newstring[i] = s2[i];
-	}
-	return (newstring);
 }
 /**
  * string_nconcat - concatenates two strings
@@ -57,27 +27,41 @@ char *_newstr(char *s2, int n)
  */
 char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
-	int i = 0, j = 0;
-	char *catptr;
-	char *news2;
-	int lengths1 = 0;
-	int lengths2 = 0;
+	char *concat;
+	char *concat1;
+	unsigned int lengths1;
+	unsigned int lengths2;
 
+	if (s1 == NULL)
+		s1 = "";
+	if (s2 == NULL)
+		s2 = "";
 	lengths1 = _strlen(s1);
-	news2 = _newstr(s2, n);
-        lengths2 = _strlen(news2);
-
-	catptr = malloc((lengths1 + lengths2 + 1) * sizeof(char));
-	if (catptr == NULL)
+	if (n >= _strlen(s2))
 	{
-		free (news2);
-		return (NULL);
+		lengths2 = _strlen(s2) + 1;
 	}
-	/*writing s1 into catptr */
-	for (; s1[i] != '\0'; i++)
-		catptr[i] = s1[i];
-	for (; news2[j] != '\0'; j++, i++)
-		catptr[i] = news2[j];
-	free(news2);
-	return (catptr);
+	else
+		lengths2 = n + 1;
+	concat = malloc(sizeof(char) * (lengths1 + lengths2) + 1);
+	if (concat == NULL)
+		return (NULL);
+	concat1 = concat;
+	/* set *concat = *s1 */
+	while (*s1 != 0)
+	{
+		*concat = *s1;
+		concat++;
+		s1++;
+	}
+	/* set the rest of *concat = *s2 */
+	while (lengths2 > 0)
+	{
+		*concat = *s2;
+		lengths2--;
+		concat++;
+		s2++;
+	}
+	*concat = '\0';
+	return (concat1);
 }
