@@ -55,7 +55,7 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 		s1++;
 	}
 	/* set the rest of *concat = *s2 */
-	while (lengths2 > 0)
+	while (lengths2 > 1)
 	{
 		*concat = *s2;
 		lengths2--;
