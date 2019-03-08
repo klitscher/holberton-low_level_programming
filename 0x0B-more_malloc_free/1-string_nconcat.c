@@ -39,10 +39,10 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 	lengths1 = _strlen(s1);
 	if (n >= _strlen(s2))
 	{
-		lengths2 = _strlen(s2) + 1;
+		lengths2 = _strlen(s2);
 	}
 	else
-		lengths2 = n + 1;
+		lengths2 = n;
 	concat = malloc(sizeof(char) * (lengths1 + lengths2) + 1);
 	if (concat == NULL)
 		return (NULL);
@@ -55,7 +55,7 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 		s1++;
 	}
 	/* set the rest of *concat = *s2 */
-	while (lengths2 > 1)
+	while (lengths2 > 0)
 	{
 		*concat = *s2;
 		lengths2--;
