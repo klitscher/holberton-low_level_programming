@@ -10,19 +10,24 @@
  * Return: A pointer to the newly allocated memory
  */
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
- {
-	 unsigned  int i;
-	 char *ptr2 = ptr;
-	 char *newmem;
+{
+	unsigned  int i;
+	char *ptr2 = ptr;
+	char *newmem;
 
-	 if (new_size == old_size)
-		 return (NULL);
-	 newmem = malloc(new_size);
-	 if (newmem == NULL)
-		 return (NULL);
-	 /*Writing contents of ptr to newmem */
-	 for (i = 0; i < old_size; i++)
-		 newmem[i] = ptr2[i];
-	 free(ptr);
-	 return(newmem);
- }
+	if (new_size == 0 && ptr != NULL)
+	{
+		free(ptr);
+		return (NULL);
+	}
+	else if (new_size == old_size)
+		return (NULL);
+	newmem = malloc(new_size);
+	if (newmem == NULL)
+		return (NULL);
+	/*Writing contents of ptr to newmem */
+	for (i = 0; i < old_size; i++)
+		newmem[i] = ptr2[i];
+	free(ptr);
+	return (newmem);
+}
