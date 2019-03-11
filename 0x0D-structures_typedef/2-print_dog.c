@@ -17,8 +17,8 @@ void print_dog(struct dog *d)
 		printf("(nil)\n");
 	else
 		printf("Name: %s\n", d->name);
-	if (d->age == 0.000000)
-		printf("(nil)\n");
+	if (d->age == 0)
+		printf("0.000000");
 	else
 		printf("Age: %f\n", d->age);
 	if (d->owner == NULL)
