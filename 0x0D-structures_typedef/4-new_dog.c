@@ -22,7 +22,7 @@ int _strlen(char *s)
  * _strdup - copy string to new memory location
  * @s: string to copy
  *
- * Return - ptr to new location
+ * Return: ptr to new location
  */
 char *_strdup(char *s)
 {
