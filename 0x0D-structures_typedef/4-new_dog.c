@@ -2,63 +2,89 @@
 #include <stdlib.h>
 
 /**
- * _strlen - Function to find the length of a string
- * @s: The string to get the length of
+ * _strlen - Get the length of a string
+ * @s: string to get the length of
  *
- * Return: The length of the string
+ * Return: length of string
  */
 int _strlen(char *s)
 {
-	int i;
+	int i = 0;
 
-	if (s == NULL)
-		return (0);
-	for (i = 0; *s != '\0'; s++)
+	while (s[i] != '\0')
 	{
 		i++;
 	}
+	i++;
 	return (i);
 }
 /**
- * new_dog - create a new dog muwahahahahahaah!
- * @name: namer of dog
+ * _strdup - copy string to new memory location
+ * @s: string to copy
+ *
+ * Return - ptr to new location
+ */
+char *_strdup(char *s)
+{
+	char *ptr;
+	int length;
+	int i;
+
+	length = _strlen(s);
+	ptr = malloc(sizeof(s) * length);
+	if (ptr == NULL)
+		return (NULL);
+
+	for (i = 0; i <= length; i++)
+		ptr[i] = s[i];
+
+	return (ptr);
+}
+/**
+ * new_dog - Create a new structure
+ * @name: name of dog
  * @age: age of dog
  * @owner: owner of dog
  *
- * Return: pointer to a struct type
+ * Return: ptr to new struct
  */
 dog_t *new_dog(char *name, float age, char *owner)
 {
 	dog_t *ptr_new_dog;
 	char *ptr_name;
 	char *ptr_owner;
-	int i = 0;
-	int len_name = _strlen(name);
-	int len_owner = _strlen(owner);
-	/* Allocating memory to store struct,  name and owner strings */
+
 	ptr_new_dog = malloc(sizeof(dog_t));
 	if (ptr_new_dog == NULL)
 		return (NULL);
-	ptr_name = malloc(sizeof(name) * len_name + 1);
-	if (ptr_name == NULL)
+	/*name memory check and allocation*/
+	if (name == NULL)
+		ptr_new_dog->name = NULL;
+	else
 	{
-		return (NULL);
+		ptr_name = _strdup(name);
+		if (ptr_name == NULL)
+		{
+			free(ptr_new_dog);
+			return (NULL);
+		}
+		ptr_new_dog->name = ptr_name;
 	}
-	ptr_owner = malloc(sizeof(owner) * len_owner + 1);
-	if (ptr_owner == NULL)
+	/*owner memory check and allocation */
+	if (owner == NULL)
+		ptr_new_dog->owner = NULL;
+	else
 	{
-		return (NULL);
+		ptr_owner = _strdup(owner);
+		if (ptr_owner == NULL)
+		{
+			free(ptr_new_dog->name);
+			free(ptr_new_dog);
+			return (NULL);
+		}
+		ptr_new_dog->owner = ptr_owner;
 	}
-	/* Copying the old strings to new mem location */
-	for (i = 0; i < len_name; i++)
-		ptr_name[i] = name[i];
-	ptr_name[i] = '\0';
-	for (i = 0; i < len_owner; i++)
-		ptr_owner[i] = owner[i];
-	ptr_owner[i] = '\0';
-	/* setting the values of new struct */
-	ptr_new_dog->name = ptr_name;
+	/*Setting age to new location*/
 	ptr_new_dog->age = age;
-	ptr_new_dog->owner = ptr_owner;
 	return (ptr_new_dog);
 }
