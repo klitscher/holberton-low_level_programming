@@ -10,7 +10,8 @@
 int _strlen(char *s)
 {
 	int i;
-
+	if (s == NULL)
+		return (0);
 	for (i = 0; *s != '\0'; s++)
 	{
 		i++;
@@ -31,19 +32,25 @@ dog_t *new_dog(char *name, float age, char *owner)
 	char *ptr_name;
 	char *ptr_owner;
 	int i = 0;
-	int len_name = _strlen(name) + 1;
-	int len_owner = _strlen(owner) + 1;
+	int len_name = _strlen(name);
+	int len_owner = _strlen(owner);
 
 	/* Allocating memory to store struct,  name and owner strings */
 	ptr_new_dog = malloc(sizeof(dog_t));
 	if (ptr_new_dog == NULL)
 		return (NULL);
-	ptr_name = malloc(sizeof(name) * len_name);
+	ptr_name = malloc(sizeof(name) * len_name + 1);
 	if (ptr_name == NULL)
+	{
+		free(ptr_name);
 		return (NULL);
-	ptr_owner = malloc(sizeof(owner) * len_owner);
+	}
+	ptr_owner = malloc(sizeof(owner) * len_owner + 1);
 	if (ptr_owner == NULL)
+	{
+		free (ptr_owner);
 		return (NULL);
+	}
 	/* Copying the old strings to new mem location */
 	while (i < len_name)
 	{
