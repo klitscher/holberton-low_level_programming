@@ -1,1 +1,1 @@
-Directory for variadic exercise files
+Directory for variadic exercise files.
