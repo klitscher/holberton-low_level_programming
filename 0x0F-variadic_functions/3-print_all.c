@@ -17,7 +17,7 @@ void print_all(const char * const format, ...)
 
 	ptr_format = format;
 	va_start(va_print, format);
-	while (*ptr_format != '\0' && ptr_format != NULL)
+	while (*ptr_format != '\0' && format != NULL)
 	{
 		switch (*ptr_format)
 		{
