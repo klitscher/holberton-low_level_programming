@@ -12,14 +12,14 @@
 void print_all(const char * const format, ...)
 {
 	va_list va_print;
-	const char *ptr_format;
+	const char *pf;
 	char *temp;
 
-	ptr_format = format;
 	va_start(va_print, format);
-	while (*ptr_format != '\0' && format != NULL)
+	pf = format;
+	while (format != NULL && *pf != '\0')
 	{
-		switch (*ptr_format)
+		switch (*pf)
 		{
 		case 'c':
 			printf("%c", (va_arg(va_print, int)));
@@ -40,12 +40,16 @@ void print_all(const char * const format, ...)
 			printf("%s", temp);
 			break;
 		default:
-			ptr_format++;
+			pf++;
 			continue;
 		}
-		if (*(ptr_format + 1) != '\0')
-			printf(", ");
-		ptr_format++;
+		while (*pf == 'c' || *pf == 'i' || *pf == 'f' || *pf == 's')
+		{
+			if (*(pf + 1) != '\0')
+				printf(", ");
+			break;
+		}
+		pf++;
 	}
 	va_end(va_print);
 	printf("\n");
