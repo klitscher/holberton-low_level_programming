@@ -1,52 +1,52 @@
-#include <stdlib.h>
-#include <stdarg.h>
 #include <stdio.h>
-/**
- * struct key - new struct
- * @c: char
- * @i: int;
- * @f: float
- * @s: char *
- */
-struct Key
-{
-	char *type;
-	void (*f)(char *s);
-};
-void (*get_func(char *s))(char *)
-{
-	struct Key key[] = {
-		{"c", print},
-		{"i", op_sub},
-		{"f", op_mul},
-		{"s", op_div},
-		{NULL, NULL,},
-	};
-	int i = 0;
+#include <stdarg.h>
+#include <stdlib.h>
+#include "variadic_functions.h"
 
-	while(key[i].type)
-	{
-		if (*key[i].type == *s)
-			return (key[i].f);
-		i++;
-	}
-	return (NULL);
-}
 /**
- * print_all - print all the things
- * @format: the format to print them in
+ * print_all - prints anything
+ * @format: list of types of arguments passed to function
  *
  * Return: void
  */
 void print_all(const char * const format, ...)
 {
-	struct Key key;
-	va_list ap;
+	va_list va_print;
 	const char *ptr_format;
-	
+	char *temp;
 
-	va_start(va_list, format);
 	ptr_format = format;
-	while (*format != '\0')
+	va_start(va_print, format);
+	while (*ptr_format != '\0')
 	{
-		if (*format !=
+		switch (*ptr_format)
+		{
+		case 'c':
+			printf("%c", (va_arg(va_print, int)));
+			break;
+		case 'i':
+			printf("%d", va_arg(va_print, int));
+			break;
+		case 'f':
+			printf("%f", va_arg(va_print, double));
+			break;
+		case 's':
+			temp = va_arg(va_print, char *);
+			if (temp == NULL)
+			{
+				printf("(nil)");
+				break;
+			}
+			printf("%s", temp);
+			break;
+		default:
+			ptr_format++;
+			continue;
+		}
+		if (*(ptr_format + 1) != '\0')
+			printf(", ");
+		ptr_format++;
+	}
+	va_end(va_print);
+	printf("\n");
+}
