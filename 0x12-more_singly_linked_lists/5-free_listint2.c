@@ -3,20 +3,21 @@
 #include "lists.h"
 
 /**
- * free_listint - frees a listint
+ * free_listint2 - frees a listint
  * @head: list to free
  *
  * Return: void
  */
-void free_listint(listint_t *head)
+void free_listint2(listint_t **head)
 {
 	listint_t *ptr;
 
-	ptr = head;
+	ptr = *head;
 	while (ptr != NULL)
 	{
-		head = ptr;
+		*head = ptr;
 		ptr = ptr->next;
-		free(head);
+		free(*head);
 	}
+	*head = NULL;
 }
