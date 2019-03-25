@@ -5,7 +5,7 @@
 /**
  * add_nodeint - add a new node to the beginning of a linked list
  * @head: linked list node position
- * @int: integer
+ * @n: integer
  *
  * Return: Address of new element or NULL
  */
