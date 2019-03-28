@@ -10,8 +10,8 @@
  */
 unsigned int binary_to_uint(const char *b)
 {
-	unsigned int arr[9] = {1, 2, 4, 8, 16, 32, 64, 128, 256};
-	int i, j;
+	int i;
+	int j = 1;
 	unsigned int sum = 0;
 
 	if (b == NULL)
@@ -24,10 +24,13 @@ unsigned int binary_to_uint(const char *b)
 			return (0);
 	}
 	i--;
-	for (j = 0; i >= 0; i--, j++)
+	for (; i >= 0; i--)
 	{
-		if (b[i] == '1')
-			sum += arr[j];
+		if (b[i + 1] == '\0' && b[i] == '1')
+			sum++;
+		else if (b[i] == '1')
+			sum = sum + j;
+		j = j * 2;
 	}
 	return (sum);
 }
