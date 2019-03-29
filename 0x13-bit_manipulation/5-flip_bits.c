@@ -20,8 +20,8 @@ unsigned int flip_bits(unsigned long int n, unsigned long int m)
 	{
 		mask_n = n >> i;
 		mask_m =  m >> i;
-		/* Why didn't && between them work?*/
-		  if ((mask_n & 1) == (mask_m & 1))
+		/*Why didn't && between them work?*/
+		if ((mask_n & 1) == (mask_m & 1))
 			;
 		else
 			falses++;
