@@ -3,8 +3,8 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+#include <stdlib.h>
 #include "holberton.h"
-
 /**
  * read_textfile - reads a textfile and prints it to POSIX standard output
  * @filename: name of the file to read
@@ -16,11 +16,14 @@ ssize_t read_textfile(const char *filename, size_t letters)
 {
 	int fd;
 	unsigned int i = 0;
-	char buff[1024] = {'\0'};
+	char *buff;
 
 	if (filename == NULL)
 		return (0);
 
+	buff = malloc(letters);
+	if (buff == NULL)
+		return (0);
 	/* opens the file in read only mode*/
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
