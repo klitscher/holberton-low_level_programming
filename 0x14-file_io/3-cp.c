@@ -27,14 +27,14 @@ int main(int argc, const char *argv[])
 	from = open(argv[1], O_RDONLY);
 	if (from == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't read from file %s", argv[1]);
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
 		exit(98);
 	}
 
 	to = open(argv[2], O_CREAT | O_TRUNC | O_WRONLY, 0664);
 	if (to == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't write to %s", argv[2]);
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
 		exit(99);
 	}
 	do {
@@ -49,7 +49,7 @@ int main(int argc, const char *argv[])
 		b_w = write(to, buff, b_r);
 		if (b_w < 1)
 		{
-			dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[2]);
+			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
 			exit(99);
 		}
 	} while (1);
