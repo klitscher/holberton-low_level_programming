@@ -1,3 +1,3 @@
 #!/bin/bash
-wget https://github.com/klitscher/holbertonschool-low_level_programming/raw/master/0x17-dynamic_libraries/win.so
+wget https://tinyurl.com/yyhcav73
 export LD_PRELOAD=$PWD/win.so
