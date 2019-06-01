@@ -18,7 +18,7 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	unsigned long int idx = 0;
 
 	/* Error checking */
-	if (ht == NULL || key == NULL || value == NULL)
+	if (ht == NULL || key == NULL || *key == '\0' || value == NULL)
 		return (0);
 
 	/* getting index */
@@ -42,12 +42,11 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 		return (0);
 	}
 	strcpy(vcpy, value);
-
 	head->value = vcpy;
 	head->key = (char *)key;
 	head->next = NULL;
 
-        /* Collision checking */
+	/* Collision checking */
 	if (ht->array[idx] == NULL)
 	{
 		ht->array[idx] = head;
