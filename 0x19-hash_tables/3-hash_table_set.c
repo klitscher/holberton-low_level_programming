@@ -42,13 +42,56 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	head->value = vcpy;
 	head->key = (char *)key;
 	head->next = NULL;
-	/* Collision checking */
+	ht_add_node(ht, head, idx, key);
+	return (1);
+}
+
+/**
+ * ht_add_node - Adds node to hastable
+ * @ht: ht to add a node to
+ * @head: node to add
+ * @idx: index
+ * @key: Key to check at index
+ *
+ * Return: 0
+ */
+int ht_add_node(hash_table_t *ht, hash_node_t *head,
+		 int idx, const char *key)
+{
+	hash_node_t *slow, *fast;
+
 	if (ht->array[idx] == NULL)
+	{
 		ht->array[idx] = head;
+	}
 	else
 	{
+		slow = ht->array[idx];
+		fast = slow->next;
+		/*why does this work without strcmp*/
+		if (strcmp(slow->key, key) == 0)
+		{
+			head->next = slow->next;
+			ht->array[idx] = head;
+			free(slow);
+			return (0);
+		}
+		while (fast != NULL)
+		{
+			/*why does this work without strcmp*/
+			if (strcmp(fast->key, key) == 0)
+			{
+				slow->next = fast->next;
+				free(fast);
+				head->next = ht->array[idx];
+				ht->array[idx] = head;
+				return (0);
+			}
+			fast = fast->next;
+			slow = slow->next;
+		}
 		head->next = ht->array[idx];
 		ht->array[idx] = head;
 	}
-	return (1);
+	return (0);
 }
