@@ -17,15 +17,12 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	hash_node_t *head;
 	unsigned long int idx = 0;
 
-	/* Error checking */
-	if (ht == NULL || key == NULL || *key == '\0' || value == NULL)
+	if (ht == NULL || key == NULL ||
+	    *key == '\0' || value == NULL || ht->size == 0)
 		return (0);
-
 	/* getting index */
 	idx = key_index((unsigned char *)key, ht->size);
-	printf("Index: %lu\n", idx);
-
-	/*initializing list*/
+	/*initializing node/list*/
 	head = calloc(1, sizeof(hash_node_t));
 	if (head == NULL)
 	{
@@ -45,18 +42,13 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	head->value = vcpy;
 	head->key = (char *)key;
 	head->next = NULL;
-
 	/* Collision checking */
 	if (ht->array[idx] == NULL)
-	{
 		ht->array[idx] = head;
-		printf("First in: %s\n", head->key);
-	}
 	else
 	{
 		head->next = ht->array[idx];
 		ht->array[idx] = head;
-		printf("Next in: %s\n", head->key);
 	}
 	return (1);
 }
