@@ -73,6 +73,7 @@ int ht_add_node(hash_table_t *ht, hash_node_t *head,
 		{
 			head->next = slow->next;
 			ht->array[idx] = head;
+			free(slow->value);
 			free(slow);
 			return (0);
 		}
@@ -82,6 +83,7 @@ int ht_add_node(hash_table_t *ht, hash_node_t *head,
 			if (strcmp(fast->key, key) == 0)
 			{
 				slow->next = fast->next;
+				free(fast->value);
 				free(fast);
 				head->next = ht->array[idx];
 				ht->array[idx] = head;
