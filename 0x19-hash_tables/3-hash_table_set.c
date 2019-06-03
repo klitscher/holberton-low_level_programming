@@ -24,27 +24,19 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	head = calloc(1, sizeof(hash_node_t));
 	if (head == NULL)
 	{
-		free(ht->array);
-		free(ht);
 		return (0);
 	}
-	/*vcpy = malloc(sizeof(char) * strlen(value) + 1);*/
 	vcpy = strdup(value);
 	if (vcpy == NULL)
 	{
 		free(head);
-		free(ht->array);
-		free(ht);
 		return (0);
 	}
-	/*kcpy = malloc(sizeof(char) * strlen(key) + 1);*/
 	kcpy = strdup(key);
 	if (kcpy == NULL)
 	{
 		free(vcpy);
 		free(head);
-		free(ht->array);
-		free(ht);
 		return (0);
 	}
 	head->value = vcpy;
