@@ -17,13 +17,17 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	hash_node_t *head;
 	unsigned long int idx = 0;
 
-	if (ht == NULL || key == NULL ||
+	if (ht == NULL || key == NULL || ht->array == NULL ||
 	    *key == '\0' || value == NULL || ht->size == 0)
+	{
+		printf("Got: Invalid\n");
 		return (0);
+	}
 	idx = key_index((unsigned char *)key, ht->size);
 	head = calloc(1, sizeof(hash_node_t));
 	if (head == NULL)
 	{
+		printf("Got: head memory\n");
 		free(ht->array);
 		free(ht);
 		return (0);
@@ -31,6 +35,7 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	vcpy = malloc(sizeof(char) * strlen(value) + 1);
 	if (vcpy == NULL)
 	{
+		printf("Got: vcpy memory\n");
 		free(head);
 		free(ht->array);
 		free(ht);
@@ -39,6 +44,7 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	kcpy = malloc(sizeof(char) * strlen(key) + 1);
 	if (vcpy == NULL)
 	{
+		printf("Got: kcpy memory\n");
 		free(vcpy);
 		free(head);
 		free(ht->array);
@@ -51,6 +57,7 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	head->key = kcpy;
 	head->next = NULL;
 	ht_add_node(ht, head, idx, key);
+	printf("Got: Success\n");
 	return (1);
 }
 
