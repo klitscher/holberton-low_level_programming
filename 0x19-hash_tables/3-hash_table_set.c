@@ -37,7 +37,7 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 		return (0);
 	}
 	kcpy = malloc(sizeof(char) * strlen(key) + 1);
-	if (vcpy == NULL)
+	if (kcpy == NULL)
 	{
 		free(vcpy);
 		free(head);
