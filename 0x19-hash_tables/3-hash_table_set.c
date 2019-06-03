@@ -66,7 +66,7 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 int ht_add_node(hash_table_t *ht, hash_node_t *head,
 		 int idx, const char *key)
 {
-	hash_node_t *slow, *fast;
+	hash_node_t  *fast;
 
 	if (ht->array[idx] == NULL)
 	{
@@ -74,33 +74,18 @@ int ht_add_node(hash_table_t *ht, hash_node_t *head,
 	}
 	else
 	{
-		slow = ht->array[idx];
-		fast = slow->next;
-		/*why does this work without strcmp*/
-		if (strcmp(slow->key, key) == 0)
-		{
-			head->next = slow->next;
-			ht->array[idx] = head;
-			free(slow->value);
-			free(slow->key);
-			free(slow);
-			return (0);
-		}
+		fast = ht->array[idx];
 		while (fast != NULL)
 		{
-			/*why does this work without strcmp*/
 			if (strcmp(fast->key, key) == 0)
 			{
-				head->next = fast->next;
-				slow->next = head;
 				free(fast->value);
-				free(fast->key);
-				free(fast);
-				ht->array[idx] = head;
+				fast->value = head->value;
+				free(head->key);
+				free(head);
 				return (0);
 			}
 			fast = fast->next;
-			slow = slow->next;
 		}
 		head->next = ht->array[idx];
 		ht->array[idx] = head;
