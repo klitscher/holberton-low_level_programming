@@ -91,11 +91,11 @@ int ht_add_node(hash_table_t *ht, hash_node_t *head,
 			/*why does this work without strcmp*/
 			if (strcmp(fast->key, key) == 0)
 			{
-				slow->next = fast->next;
+				head->next = fast->next;
+				slow->next = head;
 				free(fast->value);
 				free(fast->key);
 				free(fast);
-				head->next = ht->array[idx];
 				ht->array[idx] = head;
 				return (0);
 			}
