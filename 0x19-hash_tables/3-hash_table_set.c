@@ -14,39 +14,31 @@
 int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
 	char *vcpy = NULL, *kcpy = NULL;
-	hash_node_t *head;
+	hash_node_t *head = NULL;
 	unsigned long int idx = 0;
 
-	if (ht == NULL || key == NULL ||
-	    *key == '\0' || value == NULL || ht->size == 0)
+	if (ht == NULL || ht->size < 1 || ht->array == NULL ||
+	    key == NULL || *key == '\0' || value == NULL)
 		return (0);
 	idx = key_index((unsigned char *)key, ht->size);
 	head = calloc(1, sizeof(hash_node_t));
 	if (head == NULL)
 	{
-		free(ht->array);
-		free(ht);
 		return (0);
 	}
-	vcpy = malloc(sizeof(char) * strlen(value) + 1);
+	vcpy = strdup(value);
 	if (vcpy == NULL)
 	{
 		free(head);
-		free(ht->array);
-		free(ht);
 		return (0);
 	}
-	kcpy = malloc(sizeof(char) * strlen(key) + 1);
-	if (vcpy == NULL)
+	kcpy = strdup(key);
+	if (kcpy == NULL)
 	{
 		free(vcpy);
 		free(head);
-		free(ht->array);
-		free(ht);
 		return (0);
 	}
-	strcpy(vcpy, value);
-	strcpy(kcpy, key);
 	head->value = vcpy;
 	head->key = kcpy;
 	head->next = NULL;
@@ -66,7 +58,7 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 int ht_add_node(hash_table_t *ht, hash_node_t *head,
 		 int idx, const char *key)
 {
-	hash_node_t *slow, *fast;
+	hash_node_t  *current;
 
 	if (ht->array[idx] == NULL)
 	{
@@ -74,33 +66,18 @@ int ht_add_node(hash_table_t *ht, hash_node_t *head,
 	}
 	else
 	{
-		slow = ht->array[idx];
-		fast = slow->next;
-		/*why does this work without strcmp*/
-		if (strcmp(slow->key, key) == 0)
+		current = ht->array[idx];
+		while (current != NULL)
 		{
-			head->next = slow->next;
-			ht->array[idx] = head;
-			free(slow->value);
-			free(slow->key);
-			free(slow);
-			return (0);
-		}
-		while (fast != NULL)
-		{
-			/*why does this work without strcmp*/
-			if (strcmp(fast->key, key) == 0)
+			if (strcmp(current->key, key) == 0)
 			{
-				slow->next = fast->next;
-				free(fast->value);
-				free(fast->key);
-				free(fast);
-				head->next = ht->array[idx];
-				ht->array[idx] = head;
+				free(current->value);
+				current->value = head->value;
+				free(head->key);
+				free(head);
 				return (0);
 			}
-			fast = fast->next;
-			slow = slow->next;
+			current = current->next;
 		}
 		head->next = ht->array[idx];
 		ht->array[idx] = head;
