@@ -1,4 +1,4 @@
-# 0x19. C - Hash tables
+## 0x19. C - Hash tables
 
 ## Description
 What you should learn from this project:
