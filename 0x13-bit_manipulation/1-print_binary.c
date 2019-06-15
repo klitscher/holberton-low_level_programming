@@ -19,7 +19,7 @@ void print_binary(unsigned long int n)
 		result = n >> i;
 		if (result & 1)
 			break;
-	}
+			}
 	for (; i >= 0; i--)
 	{
 		result = n >> i;
