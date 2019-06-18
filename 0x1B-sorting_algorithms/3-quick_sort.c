@@ -11,26 +11,32 @@
  */
 int partition(int *array, size_t size, int lo, int hi)
 {
-	int pivot = array[hi], i = lo - 1, j, temp;
+	int pivot = array[hi], i = lo, j, temp;
 
-	(void)size;
 	for (j = lo; j <= hi - 1; j++)
 	{
-		if (array[j] <= pivot)
+		if (array[j] < pivot)
 		{
+			if (array[j] != array[i])
+			{
+				temp = array[j];
+				array[j] = array[i];
+				array[i] = temp;
+				print_array(array, size);
+			}
 			i++;
-			temp = array[j];
-			array[j] = array[i];
-			array[i] = temp;
 		}
 	}
-	print_array(array, size);
-	temp = array[i + 1];
-	array[i + 1] = array[hi];
-	array[hi] = temp;
-
-	return (i + 1);
+	if (array[i] != array[hi])
+	{
+		temp = array[i];
+		array[i] = array[hi];
+		array[hi] = temp;
+		print_array(array, size);
+	}
+	return (i);
 }
+
 
 /**
  * q_sort - sorts an array using quick-sort
