@@ -47,11 +47,13 @@ void swap_town(listint_t **ptr1, listint_t **ptr2)
  */
 void cocktail_sort_list(listint_t **list)
 {
-	listint_t *p1 = (*list), *p2 = (*list);
+	listint_t *p1, *p2;
 	int l_l = 0, flag, count, boo1 = 0;
 
 	if ((list) == NULL || (*list) == NULL)
 		return;
+	p1 = *list;
+	p2 = *list;
 	while (p1 != NULL)
 		l_l++, p1 = p1->next;
 	if (l_l < 2)
