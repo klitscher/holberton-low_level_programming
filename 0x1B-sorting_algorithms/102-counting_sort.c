@@ -23,7 +23,38 @@ int *create_array(int max, int *index_arr, int *count_arr)
 	}
 	return (array);
 }
+/**
+ * order_array - function order array
+ * @array: array to put in order
+ * @size: size of array
+ * @index_arr: needed to pass in case of malloc fail in order to free
+ * @count_arr: needed to pass in case of malloc fail in order to free
+ * @sum_arr: needed to pass in case of malloc fail in order to free
+ * Return: void
+ */
+void order_array(int *array, size_t size,
+		 int *index_arr, int *count_arr, int *sum_arr)
+{
+	int *ord_array;
+	size_t i;
 
+	ord_array = malloc(sizeof(int) * size);
+	if (ord_array == NULL)
+	{
+		free(sum_arr);
+		free(count_arr);
+		free(index_arr);
+		return;
+	}
+	for (i = 0; i < size; i++)
+	{
+		ord_array[(sum_arr[array[i]]) - 1] = array[i];
+		sum_arr[array[i]] -= 1;
+	}
+	for (i = 0; i < size; i++)
+		array[i] = ord_array[i];
+	free(ord_array);
+}
 /**
  * counting_sort - sort an array using counting sort algorithm
  * @array: array to be sorted
@@ -32,7 +63,7 @@ int *create_array(int max, int *index_arr, int *count_arr)
  */
 void counting_sort(int *array, size_t size)
 {
-	int max, min_count, *index_arr, *count_arr, *sum_arr, idx2 = 0, tp;
+	int max, min_count, *index_arr, *count_arr, *sum_arr, idx2 = 0;
 	unsigned int idx = 0;
 
 	if (array == NULL || size <= 1)
@@ -63,11 +94,8 @@ void counting_sort(int *array, size_t size)
 		printf("%d", sum_arr[idx2]);
 		if (idx2 != max)
 			printf(", ");
-	} printf("\n");
-	for (idx = 0; idx < size; idx++)
-	{
-		tp = array[(sum_arr[array[idx]]) - 1];
-		array[(sum_arr[array[idx]]) - 1] = array[idx];
-		array[idx] = tp;
-	} free(index_arr), free(count_arr), free(sum_arr);
+	}
+	printf("\n");
+	order_array(array, size, index_arr, count_arr, sum_arr);
+	free(index_arr), free(count_arr), free(sum_arr);
 }
