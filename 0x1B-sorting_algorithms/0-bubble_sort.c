@@ -10,6 +10,8 @@ void bubble_sort(int *array, size_t size)
 {
 	size_t idx = 0, temp, check;
 
+	if (array == NULL)
+		return;
 	while (1)
 	{
 		check = 0;
