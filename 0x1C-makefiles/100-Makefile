@@ -7,13 +7,13 @@ CFLAGS = -Wall -Werror -Wextra -pedantic
 all: $(OBJ)
 	$(CC) $(OBJ) -o $(NAME)
 
-.PHONY: clean
 clean :
 	$(RM) -f *~ $(NAME)
+.PHONY: clean
 
-.PHONEY: oclean
 oclean :
 	$(RM) -f $(OBJ)
+.PHONEY: oclean
 
 fclean: clean oclean
 
