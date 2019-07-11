@@ -14,12 +14,13 @@ def island_perimeter(grid):
 
     for i in range(l_length):
         index_list.append(0)
-    for i in range(1, len(grid)):
-        for j in range(1, len(grid[0]) - 1):
+    for i in range(0, len(grid)):
+        for j in range(0, len(grid[0])):
             if grid[i][j] == 1:
                 count += 4
-                if grid[i][j + 1] == 1:
-                    collision += 1
+                if j + 1 < len(grid[0]):
+                    if grid[i][j + 1] == 1:
+                        collision += 1
                 if index_list[j] == 0:
                     index_list[j] = 1
                 else:
