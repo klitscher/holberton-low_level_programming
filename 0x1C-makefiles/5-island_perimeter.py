@@ -26,7 +26,6 @@ def island_perimeter(grid):
                     collision += 1
             else:
                 index_list[j] = 0
-    print(collision)
     collision_pts = collision * 2
     perim = count - collision_pts
     return perim
