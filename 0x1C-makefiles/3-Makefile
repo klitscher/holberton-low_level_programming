@@ -15,7 +15,6 @@ clean :
 oclean :
 	$(RM) -f $(OBJ)
 
-.PHONEY: fclean
 fclean: clean oclean
 
 re: oclean all
