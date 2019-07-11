@@ -4,4 +4,8 @@ OBJ = main.o holberton.o
 NAME = holberton
 
 all : $(OBJ)
-	$(CC) $(SRC) -o $(NAME)
+	$(CC) $(OBJ) -o $(NAME)
+
+main.o : main.c m.h
+
+holberton.o : holberton.c m.h
