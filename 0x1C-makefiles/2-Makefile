@@ -5,3 +5,5 @@ NAME = holberton
 
 all : $(OBJ)
 	$(CC) $(OBJ) -o $(NAME)
+
+$(OBJ) : $(SRC)
