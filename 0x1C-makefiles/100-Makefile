@@ -5,7 +5,7 @@ NAME = holberton
 CFLAGS = -Wall -Werror -Wextra -pedantic
 
 all: $(OBJ)
-	$(CC) $(OBJ) -o $(NAME)
+	if [ -f "./m.h" ]; then $(CC) $(OBJ) -o $(NAME); fi
 
 .PHONY: clean
 clean :
