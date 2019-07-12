@@ -4,8 +4,9 @@ OBJ = $(subst .c,.o,$(SRC))
 NAME = holberton
 CFLAGS = -Wall -Werror -Wextra -pedantic
 
-all: $(OBJ)
-	if [ -f "./m.h" ]; then $(CC) $(OBJ) -o $(NAME); fi
+
+all: m.h $(OBJ)
+	$(CC) $(OBJ) -o $(NAME)
 
 .PHONY: clean
 clean :
