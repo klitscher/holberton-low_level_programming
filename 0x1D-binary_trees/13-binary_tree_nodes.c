@@ -1,7 +1,7 @@
 #include "binary_trees.h"
 
 /**
- * binary_tree_nodes - cpjbdd  dfs fds f
+ * binary_tree_nodes - find the nodes with at least one child
  * @tree: tree to find node with at least one child
  * Return: count nodes
  */
