@@ -62,18 +62,13 @@ binary_tree_t *binary_trees_ancestor(const binary_tree_t *first,
 		array[i] = first;
 		first = first->parent;
 	}
-	while (second != NULL)
-	{
+	for (; second != NULL; second = second->parent)
 		for (i = 0; i <= j; i++)
-		{
 			if (array[i] == second)
 			{
 				free(array);
 				return ((binary_tree_t *)second);
 			}
-		}
-		second = second->parent;
-	}
 	free(array);
 	return (NULL);
 }
