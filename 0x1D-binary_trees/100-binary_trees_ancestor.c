@@ -45,14 +45,14 @@ binary_tree_t *binary_trees_ancestor(const binary_tree_t *first,
 
 	if (first_depth > second_depth)
 	{
-		array = calloc((first_depth +1), sizeof(binary_tree_t*));
+		array = calloc((first_depth + 1), sizeof(binary_tree_t *));
 		if (array == NULL)
 			return (NULL);
 		j = first_depth;
 	}
 	else
 	{
-		array = calloc((second_depth + 1), sizeof(binary_tree_t*));
+		array = calloc((second_depth + 1), sizeof(binary_tree_t *));
 		if (array == NULL)
 			return (NULL);
 		j = second_depth;
@@ -60,7 +60,6 @@ binary_tree_t *binary_trees_ancestor(const binary_tree_t *first,
 	for (i = 0; first != NULL; i++)
 	{
 		array[i] = first;
-		printf("%p\n", (void*) array[i]);
 		first = first->parent;
 	}
 	while (second != NULL)
