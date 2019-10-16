@@ -1,1 +1,1 @@
-Repository for low level programing assignments
+Repo for low level programing sections
